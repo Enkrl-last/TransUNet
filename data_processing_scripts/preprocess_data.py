@@ -1,3 +1,4 @@
+"""The script is used to make data preprocessing"""
 import os
 import numpy as np
 import nibabel as nib
@@ -5,10 +6,10 @@ import h5py
 
 
 def preprocess_data():
+    """Divides data in a directory into test and training"""
     file_p = os.getcwd()
     dst_path = file_p[:-24] + "/" + 'Training-Testing/Reg-Training-Testing/Training-Testing'
     folders = os.listdir(dst_path + "/" + "img")
-
     for sub_folder in folders[:1]:
         temp_pwd = dst_path + "/" + "img" + "/" + sub_folder
         files = os.listdir(temp_pwd)
@@ -39,15 +40,17 @@ def preprocess_data():
                          label=label_slice000)
 
             # keep the 3D volume in h5 format for testing cases.
-            fn = file_p[:-24] + "/data/Synapse/train_npz/case" + subject + '.npy.h5'
-            f = h5py.File(fn, 'w')
-            dataset = f.create_dataset("image", data=data_normalised)
-            dataset = f.create_dataset("label", data=label_data)
-            f.close()
+            file_name = file_p[:-24] + "/data/Synapse/train_npz/case" + subject + '.npy.h5'
+            new_file = h5py.File(file_name, 'w')
+            dataset = new_file.create_dataset("image", data=data_normalised)
+            dataset = new_file.create_dataset("label", data=label_data)
+            print(dataset)
+            new_file.close()
     print("Preprocessing complete")
 
 
 def main():
+    """execute all functions"""
     preprocess_data()
 
 

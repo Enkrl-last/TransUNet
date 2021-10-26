@@ -1,7 +1,7 @@
-import synapseclient
+"""The script is used to download external data"""
 import os
-import shutil
 import zipfile
+import synapseclient
 # from google_drive_downloader import GoogleDriveDownloader as gdd
 
 
@@ -15,6 +15,7 @@ import zipfile
 
 
 def get_data():
+    """Download data from Synapse website"""
     syn = synapseclient.Synapse()
     email = 'enkrllastlegion@gmail.com'
     # input('Input your Synapse email: ')
@@ -27,6 +28,7 @@ def get_data():
 
 
 def copy_and_unzip_data():
+    """Copy and unzeap download data to directory"""
     file_path = os.getcwd()
     src_path = file_path + '/' + 'Reg-Training-Testing.zip'
     dst_path = file_path[:-24] + "/" + 'Training-Testing'
@@ -35,6 +37,7 @@ def copy_and_unzip_data():
 
 
 def main():
+    """execute all functions"""
     get_data()
     copy_and_unzip_data()
 

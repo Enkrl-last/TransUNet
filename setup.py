@@ -1,3 +1,4 @@
+"""Install dependency"""
 from setuptools import setup
 
 setup(

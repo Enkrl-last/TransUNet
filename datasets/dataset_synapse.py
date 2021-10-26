@@ -1,3 +1,4 @@
+"""The script is used during training and testing"""
 import os
 import random
 import h5py
@@ -9,6 +10,7 @@ from torch.utils.data import Dataset
 
 
 def random_rot_flip(image, label):
+    """random flip transformation of data"""
     k = np.random.randint(0, 4)
     image = np.rot90(image, k)
     label = np.rot90(label, k)
@@ -19,6 +21,7 @@ def random_rot_flip(image, label):
 
 
 def random_rotate(image, label):
+    """random rotate transformation of data"""
     angle = np.random.randint(-20, 20)
     image = ndimage.rotate(image, angle, order=0, reshape=False)
     label = ndimage.rotate(label, angle, order=0, reshape=False)
@@ -36,10 +39,10 @@ class RandomGenerator(object):
             image, label = random_rot_flip(image, label)
         elif random.random() > 0.5:
             image, label = random_rotate(image, label)
-        x, y = image.shape
-        if x != self.output_size[0] or y != self.output_size[1]:
-            image = zoom(image, (self.output_size[0] / x, self.output_size[1] / y), order=3)  # why not 3?
-            label = zoom(label, (self.output_size[0] / x, self.output_size[1] / y), order=0)
+        x_data, y_data = image.shape
+        if x_data != self.output_size[0] or y_data != self.output_size[1]:
+            image = zoom(image, (self.output_size[0] / x_data, self.output_size[1] / y_data), order=3)  # why not 3?
+            label = zoom(label, (self.output_size[0] / x_data, self.output_size[1] / y_data), order=0)
         image = torch.from_numpy(image.astype(np.float32)).unsqueeze(0)
         label = torch.from_numpy(label.astype(np.float32))
         sample = {'image': image, 'label': label.long()}
@@ -47,6 +50,7 @@ class RandomGenerator(object):
 
 
 class SynapseDataset(Dataset):
+    """Work with Synapse dataset"""
     def __init__(self, base_dir, list_dir, split, transform=None):
         self.transform = transform  # using transform in torch!
         self.split = split
