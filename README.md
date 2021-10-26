@@ -7,7 +7,7 @@ git clone git@github.com:Enkrl-last/TransUNet.git
 ```
 #### If u want to use already existed docker image u can download it by:
 ```bash
-docker pull 1223ssaw/transunet:2.0
+docker pull 1223ssaw/transunet:1.0
 sudo docker run -it --rm --gpus all transunet
 ```
 #### If u want to build docker by yourself or make changes go to
@@ -70,13 +70,13 @@ python3 data_processing_scripts/preprocess_data.py
 ### 3. Train and Test
 As an example, to train and test neural network, you can use a commands with preset parameters:
 
-#### 3.1. Preprocess data
+#### 3.1. Train
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python3 train.py --dataset Synapse --vit_name R50+ViT-B_16 --batch_size=4 --max_epochs=5
 ```
 
-#### 3.2. Preprocess data
+#### 3.2. Test
 
 To evaluate NN use:
 ```bash
@@ -127,6 +127,12 @@ CUDA_VISIBLE_DEVICES=0 python3 train.py --dataset Synapse --vit_name {MODEL_NAME
 ```bash
 python test.py --dataset Synapse --vit_name {MODEL_NAME_FROM_LIST}
 ```
+
+## Afterword
+When creating download scripts, we were able to successfully download and process files from the Synapse website, but at the moment there are problems with access to the client and we were unable to reproduce the results.
+For example, we attach a small sample, which we left in the github, in order to evaluate the work of train and test scripts.
+![img.png](img.png)
+
 ## Reference
 * [TransUNet](https://github.com/google-research/vision_transformer)
 * [Google ViT](https://github.com/google-research/vision_transformer)

@@ -45,6 +45,7 @@ model/TU_Synapse224
 *.txt
 *.db
 *.lst
+model
 
 # Python models
 *.npy
