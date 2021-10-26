@@ -110,4 +110,4 @@ cd Docker
 
 ## DISCLAIMER
 
-*“This repository is not an original official implementation of the work, but a refactored codebase.Performed within the FSE coursework at Skoltech.”*
+*“This repository is not an original official implementation of the work, but a refactored codebase. Performed within the FSE coursework at Skoltech.”*
