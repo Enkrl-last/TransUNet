@@ -34,21 +34,16 @@ cd model/vit_checkpoint/imagenet21k/
 wget https://storage.googleapis.com/vit_models/imagenet21k/R50+ViT-B_16.npz
 cd ../../..
 ```
-Or use [custom models](https://console.cloud.google.com/storage/vit_models/imagenet21k/): R50-ViT-B_16, ViT-B_16, ViT-L_16...
-  R26+ViT-B_32.npz, R50+ViT-B_16.npz,  R50+ViT-L_32.npz,  ViT-B_16.npz, ViT-B_32.npz,
-ViT-B_8.npz,  ViT-H_14.npz, ViT-L_16.npz,  ViT-L_32.npz.
 
-```bash
-mkdir -p ./data/Synapse/{test_vol_h5,train_npz}
-mkdir -p ./model/vit_checkpoint/imagenet21k
-cd model/vit_checkpoint/imagenet21k/
-wget https://storage.googleapis.com/vit_models/imagenet21k/{MODEL_NAME}.npz
-```
 #### 1.3. Install requirements
 
 Please prepare an environment with python>=3.7.
 ```bash
 pip install -r requirements.txt
+```
+or
+```bash
+sudo python3 setup.py install
 ```
 ### 2. Prepare dataset example for work
 
@@ -71,37 +66,62 @@ python3 data_processing_scripts/preprocess_data.py
 ```
 
 ### 3. Train and Test
+As an example, to train and test neural network, you can use a commands with preset parameters:
 
-#### 2.1. Preprocess data
-**Default model name:** R50+ViT-B_16
+#### 3.1. Preprocess data
 
-To train NN use:
 ```bash
 CUDA_VISIBLE_DEVICES=0 python3 train.py --dataset Synapse --vit_name R50+ViT-B_16 --batch_size=4 --max_epochs=5
 ```
 
-```bash
-CUDA_VISIBLE_DEVICES=0 python train.py --dataset Synapse --vit_name {MODEL_NAME_FROM_LIST}
-```
-
-#### 2.2. Preprocess data
-**Default model name:** R50+ViT-B_16
+#### 3.2. Preprocess data
 
 To evaluate NN use:
 ```bash
 python3 test.py --dataset Synapse --vit_name R50+ViT-B_16 --max_epoch 5 --batch_size 4
 ```
 
-```bash
-python test.py --dataset Synapse --vit_name {MODEL_NAME_FROM_LIST}
-```
 ## Modifications
 
 ### 1. Prepare environment for work (If u decide work w/o docker)
+#### 1.1. Download repo
+Our repo contain all necessary code except neural network model and example dataset
 ```bash
-cd Docker
+git clone git@github.com:Enkrl-last/TransUNet.git
+```
+#### 1.2. Download one of models.
+
+You can use any of  [custom models](https://console.cloud.google.com/storage/vit_models/imagenet21k/): R50-ViT-B_16, ViT-B_16, ViT-L_16...
+  R26+ViT-B_32.npz, R50+ViT-B_16.npz,  R50+ViT-L_32.npz,  ViT-B_16.npz, ViT-B_32.npz,
+ViT-B_8.npz,  ViT-H_14.npz, ViT-L_16.npz,  ViT-L_32.npz or add it by yourself.
+
+```bash
+mkdir -p ./data/Synapse/{test_vol_h5,train_npz}
+mkdir -p ./model/vit_checkpoint/imagenet21k
+cd model/vit_checkpoint/imagenet21k/
+wget https://storage.googleapis.com/vit_models/imagenet21k/{MODEL_NAME}.npz
 ```
 
+### 2. Prepare dataset example for work
+
+#### 2.1. Data preprocessing:
+Put your to <./data/...> and launch: 
+```bash
+python3 data_processing_scripts/preprocess_data.py
+```
+
+### 3. Train and Test
+**Note:** Training and testing parameters must be the same
+#### 3.1. Preprocess data
+You can set the parameters for training and testing by yourself. 
+```bash
+CUDA_VISIBLE_DEVICES=0 python3 train.py --dataset Synapse --vit_name {MODEL_NAME_FROM_LIST}
+```
+#### 3.2. Preprocess data
+
+```bash
+python test.py --dataset Synapse --vit_name {MODEL_NAME_FROM_LIST}
+```
 ## Reference
 * [TransUNet](https://github.com/google-research/vision_transformer)
 * [Google ViT](https://github.com/google-research/vision_transformer)
