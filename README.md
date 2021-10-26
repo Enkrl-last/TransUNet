@@ -20,18 +20,25 @@ cd Docker
 #### 1.1. Download repo
 Our repo contain all necessary code except neural network model and example dataset
 ```bash
-git@github.com:Enkrl-last/TransUNet.git
+git clone https://github.com/Enkrl-last/TransUNet.git
 ```
 #### 1.2. Download one of models.
+**Default model is:** _R50+ViT-B_16.npz_
+
+```bash
+wget https://storage.googleapis.com/vit_models/imagenet21k/R50+ViT-B_16.npz &&
+mkdir ../model/vit_checkpoint/imagenet21k &&
+mv R50+ViT-B_16.npz ../model/vit_checkpoint/imagenet21k/R50+ViT-B_16.npz
+```
+Or use custom model:
 [List of models](https://console.cloud.google.com/storage/vit_models/imagenet21k/): R50-ViT-B_16, ViT-B_16, ViT-L_16...
   R26+ViT-B_32.npz, R50+ViT-B_16.npz,  R50+ViT-L_32.npz,  ViT-B_16.npz, ViT-B_32.npz,
 ViT-B_8.npz,  ViT-H_14.npz, ViT-L_16.npz,  ViT-L_32.npz.
 
-**Default model is:** _R50+ViT-B_16.npz_
 ```bash
-cd model/vit_checkpoint/imagenet21k/ &&
-wget https://storage.googleapis.com/vit_models/imagenet21k/{MODEL_NAME_FROM_LIST} &&
-cd ../../..
+wget https://storage.googleapis.com/vit_models/imagenet21k/{MODEL_NAME}.npz &&
+mkdir ../model/vit_checkpoint/imagenet21k &&
+mv {MODEL_NAME}.npz ../model/vit_checkpoint/imagenet21k/{MODEL_NAME}.npz
 ```
 #### 1.3. Install requirements
 
