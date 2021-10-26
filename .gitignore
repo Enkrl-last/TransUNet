@@ -1,6 +1,8 @@
 # Pacharm settings
 .idea/
 build
+TransUNet.egg-info
+dist
 
 # Venv
 venv/
