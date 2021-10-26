@@ -77,6 +77,10 @@ python3 data_processing_scripts/preprocess_data.py
 
 To train NN use:
 ```bash
+CUDA_VISIBLE_DEVICES=0 python3 train.py --dataset Synapse --vit_name R50+ViT-B_16 --batch_size=4 --max_epochs=5
+```
+
+```bash
 CUDA_VISIBLE_DEVICES=0 python train.py --dataset Synapse --vit_name {MODEL_NAME_FROM_LIST}
 ```
 
@@ -84,6 +88,10 @@ CUDA_VISIBLE_DEVICES=0 python train.py --dataset Synapse --vit_name {MODEL_NAME_
 **Default model name:** R50+ViT-B_16
 
 To evaluate NN use:
+```bash
+python3 test.py --dataset Synapse --vit_name R50+ViT-B_16 --max_epoch 5 --batch_size 4
+```
+
 ```bash
 python test.py --dataset Synapse --vit_name {MODEL_NAME_FROM_LIST}
 ```
