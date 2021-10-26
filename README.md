@@ -128,6 +128,13 @@ CUDA_VISIBLE_DEVICES=0 python3 train.py --dataset Synapse --vit_name {MODEL_NAME
 python test.py --dataset Synapse --vit_name {MODEL_NAME_FROM_LIST}
 ```
 
+## Test
+Tests are presented in _test_ directory. How to run:
+```bash
+python -m unittest
+```
+
+
 ## Afterword
 When creating download scripts, we were able to successfully download and process files from the Synapse website, but at the moment there are problems with access to the client and we were unable to reproduce the results.
 For example, we attach a small sample, which we left in the github, in order to evaluate the work of train and test scripts.
