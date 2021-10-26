@@ -7,15 +7,16 @@ git clone git@github.com:Enkrl-last/TransUNet.git
 ```
 #### If u want to use already existed docker image u can download it by:
 ```bash
-Somehow download docker image
+docker pull 1223ssaw/transunet:1.0
+sudo docker run -it --rm --gpus all transunet
 ```
 #### If u want to build docker by yourself or make changes go to
 ```bash
 cd docker
 sudo docker build -t transunet .
-sudo docker run -
+sudo docker run -it --rm --gpus all transunet
 ```
-
+After that, you must follow the instructions described in 2.
 ## Usage of test data
 
 ### 1. Prepare environment for work (If u decide work w/o docker)

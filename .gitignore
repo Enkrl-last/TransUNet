@@ -41,7 +41,7 @@ model/TU_Synapse224
 *.zip
 *.rar
 *.gz
-*.npz
+#*.npz
 *.txt
 *.db
 *.lst

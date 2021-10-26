@@ -10,7 +10,6 @@ def preprocess_data():
     folders = os.listdir(dst_path + "/" + "img")
 
     for sub_folder in folders[:1]:
-        print('Started preprocessing of folder:', sub_folder)
         temp_pwd = dst_path + "/" + "img" + "/" + sub_folder
         files = os.listdir(temp_pwd)
         for filename in files:
