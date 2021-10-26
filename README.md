@@ -27,7 +27,7 @@ git clone https://github.com/Enkrl-last/TransUNet.git
 
 ```bash
 wget https://storage.googleapis.com/vit_models/imagenet21k/R50+ViT-B_16.npz &&
-mkdir ../model/vit_checkpoint/imagenet21k &&
+mkdir -p ../model/vit_checkpoint/imagenet21k &&
 mv R50+ViT-B_16.npz ../model/vit_checkpoint/imagenet21k/R50+ViT-B_16.npz
 ```
 Or use custom model:
@@ -37,7 +37,7 @@ ViT-B_8.npz,  ViT-H_14.npz, ViT-L_16.npz,  ViT-L_32.npz.
 
 ```bash
 wget https://storage.googleapis.com/vit_models/imagenet21k/{MODEL_NAME}.npz &&
-mkdir ../model/vit_checkpoint/imagenet21k &&
+mkdir -p ../model/vit_checkpoint/imagenet21k &&
 mv {MODEL_NAME}.npz ../model/vit_checkpoint/imagenet21k/{MODEL_NAME}.npz
 ```
 #### 1.3. Install requirements
