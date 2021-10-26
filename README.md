@@ -3,7 +3,7 @@ This repo holds code for [TransUNet: Transformers Make Strong Encoders for Medic
 
 ## Quick start with Docker
 ```bash
-git@github.com:Enkrl-last/TransUNet.git
+git clone git@github.com:Enkrl-last/TransUNet.git
 ```
 #### If u want to use already existed docker image u can download it by:
 ```bash
@@ -11,7 +11,9 @@ Somehow download docker image
 ```
 #### If u want to build docker by yourself or make changes go to
 ```bash
-cd Docker
+cd docker
+sudo docker build -t transunet .
+sudo docker run -
 ```
 
 ## Usage of test data
@@ -20,31 +22,32 @@ cd Docker
 #### 1.1. Download repo
 Our repo contain all necessary code except neural network model and example dataset
 ```bash
-git clone https://github.com/Enkrl-last/TransUNet.git
+git clone git@github.com:Enkrl-last/TransUNet.git
 ```
 #### 1.2. Download one of models.
 **Default model is:** _R50+ViT-B_16.npz_
 
 ```bash
-wget https://storage.googleapis.com/vit_models/imagenet21k/R50+ViT-B_16.npz &&
-mkdir -p ../model/vit_checkpoint/imagenet21k &&
-mv R50+ViT-B_16.npz ../model/vit_checkpoint/imagenet21k/R50+ViT-B_16.npz
+mkdir -p ./data/Synapse/{test_vol_h5,train_npz} 
+mkdir -p ./model/vit_checkpoint/imagenet21k
+cd model/vit_checkpoint/imagenet21k/
+wget https://storage.googleapis.com/vit_models/imagenet21k/R50+ViT-B_16.npz
+cd ../../..
 ```
-Or use custom model:
-[List of models](https://console.cloud.google.com/storage/vit_models/imagenet21k/): R50-ViT-B_16, ViT-B_16, ViT-L_16...
+Or use [custom models](https://console.cloud.google.com/storage/vit_models/imagenet21k/): R50-ViT-B_16, ViT-B_16, ViT-L_16...
   R26+ViT-B_32.npz, R50+ViT-B_16.npz,  R50+ViT-L_32.npz,  ViT-B_16.npz, ViT-B_32.npz,
 ViT-B_8.npz,  ViT-H_14.npz, ViT-L_16.npz,  ViT-L_32.npz.
 
 ```bash
-wget https://storage.googleapis.com/vit_models/imagenet21k/{MODEL_NAME}.npz &&
-mkdir -p ../model/vit_checkpoint/imagenet21k &&
-mv {MODEL_NAME}.npz ../model/vit_checkpoint/imagenet21k/{MODEL_NAME}.npz
+mkdir -p ./data/Synapse/{test_vol_h5,train_npz}
+mkdir -p ./model/vit_checkpoint/imagenet21k
+cd model/vit_checkpoint/imagenet21k/
+wget https://storage.googleapis.com/vit_models/imagenet21k/{MODEL_NAME}.npz
 ```
 #### 1.3. Install requirements
 
-Please prepare an environment with python=3.7.
+Please prepare an environment with python>=3.7.
 ```bash
-python 3.7 ???
 pip install -r requirements.txt
 ```
 ### 2. Prepare dataset example for work
