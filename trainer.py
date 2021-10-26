@@ -15,8 +15,9 @@ from tqdm import tqdm
 from utils import DiceLoss
 from torchvision import transforms
 
+
 def trainer_synapse(args, model, snapshot_path):
-    from datasets.dataset_synapse import Synapse_dataset, RandomGenerator
+    from datasets.dataset_synapse import SynapseDataset, RandomGenerator
     logging.basicConfig(filename=snapshot_path + "/log.txt", level=logging.INFO,
                         format='[%(asctime)s.%(msecs)03d] %(message)s', datefmt='%H:%M:%S')
     logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
@@ -25,8 +26,12 @@ def trainer_synapse(args, model, snapshot_path):
     num_classes = args.num_classes
     batch_size = args.batch_size * args.n_gpu
     # max_iterations = args.max_iterations
-    db_train = Synapse_dataset(base_dir=args.root_path, list_dir=args.list_dir, split="train",
-                               transform=transforms.Compose(
+    current_folder = os.getcwd()
+    base_directory = current_folder + args.root_path[2:]
+    list_directory = current_folder + args.list_dir[1:]
+
+    db_train = SynapseDataset(base_dir=base_directory, list_dir=list_directory, split="train",
+                              transform=transforms.Compose(
                                    [RandomGenerator(output_size=[args.img_size, args.img_size])]))
     print("The length of train set is: {}".format(len(db_train)))
 
