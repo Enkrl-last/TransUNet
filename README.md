@@ -58,13 +58,13 @@ After that, you need to run a sequence of scripts that download data from the si
 #### 2.1 Download data
 To download data use:
 ```bash
-python3 get_data.py
+python3 data_processing_scripts/get_data.py
 ```
 
 #### 2.2. Preprocess data
 To preprocess data use:
 ```bash
-python3 preprocess_data.py
+python3 data_processing_scripts/preprocess_data.py
 ```
 
 ### 3. Train and Test
