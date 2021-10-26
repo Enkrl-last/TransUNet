@@ -17,5 +17,6 @@ RUN mkdir -p ./data/Synapse/{test_vol_h5,train_npz}
 
 RUN mkdir -p ./model/vit_checkpoint/imagenet21k && cd model/vit_checkpoint/imagenet21k/ && wget https://storage.googleapis.com/vit_models/imagenet21k/R50+ViT-B_16.npz && cd ../../..
 
+RUN mkdir -p ./Training-Testing/Reg-Training-Testing/Training-Testing/{img,label}
 
 RUN pip install -r requirements.txt	

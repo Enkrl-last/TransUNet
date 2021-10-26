@@ -29,6 +29,7 @@ git clone git@github.com:Enkrl-last/TransUNet.git
 **Default model is:** _R50+ViT-B_16.npz_
 
 ```bash
+mkdir -p ./Training-Testing/Reg-Training-Testing/Training-Testing/{img,label}
 mkdir -p ./data/Synapse/{test_vol_h5,train_npz} 
 mkdir -p ./model/vit_checkpoint/imagenet21k
 cd model/vit_checkpoint/imagenet21k/
@@ -92,11 +93,13 @@ git clone git@github.com:Enkrl-last/TransUNet.git
 ```
 #### 1.2. Download one of models.
 
-You can use any of  [custom models](https://console.cloud.google.com/storage/vit_models/imagenet21k/): R50-ViT-B_16, ViT-B_16, ViT-L_16...
+You can use any of  [custom models](https://console.cloud.google.com/storage/vit_models/imagenet21k/):
+R50+ViT-B_16, ViT-B_16, ViT-L_16,
   R26+ViT-B_32.npz, R50+ViT-B_16.npz,  R50+ViT-L_32.npz,  ViT-B_16.npz, ViT-B_32.npz,
 ViT-B_8.npz,  ViT-H_14.npz, ViT-L_16.npz,  ViT-L_32.npz or add it by yourself.
 
 ```bash
+mkdir -p ./Training-Testing/Reg-Training-Testing/Training-Testing/{img,label}
 mkdir -p ./data/Synapse/{test_vol_h5,train_npz}
 mkdir -p ./model/vit_checkpoint/imagenet21k
 cd model/vit_checkpoint/imagenet21k/
