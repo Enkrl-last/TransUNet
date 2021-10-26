@@ -20,18 +20,25 @@ cd Docker
 #### 1.1. Download repo
 Our repo contain all necessary code except neural network model and example dataset
 ```bash
-git@github.com:Enkrl-last/TransUNet.git
+git clone https://github.com/Enkrl-last/TransUNet.git
 ```
 #### 1.2. Download one of models.
+**Default model is:** _R50+ViT-B_16.npz_
+
+```bash
+wget https://storage.googleapis.com/vit_models/imagenet21k/R50+ViT-B_16.npz &&
+mkdir -p ../model/vit_checkpoint/imagenet21k &&
+mv R50+ViT-B_16.npz ../model/vit_checkpoint/imagenet21k/R50+ViT-B_16.npz
+```
+Or use custom model:
 [List of models](https://console.cloud.google.com/storage/vit_models/imagenet21k/): R50-ViT-B_16, ViT-B_16, ViT-L_16...
   R26+ViT-B_32.npz, R50+ViT-B_16.npz,  R50+ViT-L_32.npz,  ViT-B_16.npz, ViT-B_32.npz,
 ViT-B_8.npz,  ViT-H_14.npz, ViT-L_16.npz,  ViT-L_32.npz.
 
-**Default model is:** _R50+ViT-B_16.npz_
 ```bash
-cd model/vit_checkpoint/imagenet21k/ &&
-wget https://storage.googleapis.com/vit_models/imagenet21k/{MODEL_NAME_FROM_LIST} &&
-cd ../../..
+wget https://storage.googleapis.com/vit_models/imagenet21k/{MODEL_NAME}.npz &&
+mkdir -p ../model/vit_checkpoint/imagenet21k &&
+mv {MODEL_NAME}.npz ../model/vit_checkpoint/imagenet21k/{MODEL_NAME}.npz
 ```
 #### 1.3. Install requirements
 
@@ -44,20 +51,20 @@ pip install -r requirements.txt
 
 **Note:** Dataset weight is 15 GB!
 
-To reproduce the results, you can use the dataset from the Synapsis website. 
+To reproduce the results, you can use the dataset from the [official Synapse website](https://www.synapse.org/#!Synapse:syn3193805/wiki/). 
 To do this, you need to register on it and take part in the project.
 After that, you need to run a sequence of scripts that download data from the site and perform preprocessing.
 
 #### 2.1 Download data
 To download data use:
 ```bash
-python3 get_data.py
+python3 data_processing_scripts/get_data.py
 ```
 
 #### 2.2. Preprocess data
 To preprocess data use:
 ```bash
-python3 preprocess_data.py
+python3 data_processing_scripts/preprocess_data.py
 ```
 
 ### 3. Train and Test
@@ -100,3 +107,7 @@ cd Docker
   year={2021}
 }
 ```
+
+## Disclaimer
+
+*“This repository is not an original official implementation of the work, but a refactored codebase. Performed within the FSE coursework at Skoltech.”*
