@@ -1,39 +1,91 @@
 # TransUNet
 This repo holds code for [TransUNet: Transformers Make Strong Encoders for Medical Image Segmentation](https://arxiv.org/pdf/2102.04306.pdf)
 
-## Usage
-
-### 1. Download Google pre-trained ViT models
-* [Get models in this link](https://console.cloud.google.com/storage/vit_models/): R50-ViT-B_16, ViT-B_16, ViT-L_16...
+## Quick start with Docker
 ```bash
-wget https://storage.googleapis.com/vit_models/imagenet21k/{MODEL_NAME}.npz &&
-mkdir ../model/vit_checkpoint/imagenet21k &&
-mv {MODEL_NAME}.npz ../model/vit_checkpoint/imagenet21k/{MODEL_NAME}.npz
+git@github.com:Enkrl-last/TransUNet.git
+```
+#### If u want to use already existed docker image u can download it by:
+```bash
+Somehow download docker image
+```
+#### If u want to build docker by yourself or make changes go to
+```bash
+cd Docker
 ```
 
-### 2. Prepare data
+## Usage of test data
 
-Please go to ["./datasets/README.md"](datasets/README.md) for details, or please send an Email to jienengchen01 AT gmail.com to request the preprocessed data. If you would like to use the preprocessed data, please use it for research purposes and do not redistribute it.
-
-### 3. Environment
-
-Please prepare an environment with python=3.7, and then use the command "pip install -r requirements.txt" for the dependencies.
-
-### 4. Train/Test
-
-- Run the train script on synapse dataset. The batch size can be reduced to 12 or 6 to save memory (please also decrease the base_lr linearly), and both can reach similar performance.
-
+### 1. Prepare environment for work (If u decide work w/o docker)
+#### 1.1. Download repo
+Our repo contain all necessary code except neural network model and example dataset
 ```bash
-CUDA_VISIBLE_DEVICES=0 python train.py --dataset Synapse --vit_name R50-ViT-B_16
+git@github.com:Enkrl-last/TransUNet.git
+```
+#### 1.2. Download one of models.
+[List of models](https://console.cloud.google.com/storage/vit_models/imagenet21k/): R50-ViT-B_16, ViT-B_16, ViT-L_16...
+  R26+ViT-B_32.npz, R50+ViT-B_16.npz,  R50+ViT-L_32.npz,  ViT-B_16.npz, ViT-B_32.npz,
+ViT-B_8.npz,  ViT-H_14.npz, ViT-L_16.npz,  ViT-L_32.npz.
+
+**Default model is:** _R50+ViT-B_16.npz_
+```bash
+cd model/vit_checkpoint/imagenet21k/ &&
+wget https://storage.googleapis.com/vit_models/imagenet21k/{MODEL_NAME_FROM_LIST} &&
+cd ../../..
+```
+#### 1.3. Install requirements
+
+Please prepare an environment with python=3.7.
+```bash
+python 3.7 ???
+pip install -r requirements.txt
+```
+### 2. Prepare dataset example for work
+
+**Note:** Dataset weight is 15 GB!
+
+To reproduce the results, you can use the dataset from the Synapsis website. 
+To do this, you need to register on it and take part in the project.
+After that, you need to run a sequence of scripts that download data from the site and perform preprocessing.
+
+#### 2.1 Download data
+To download data use:
+```bash
+python3 get_data.py
 ```
 
-- Run the test script on synapse dataset. It supports testing for both 2D images and 3D volumes.
-
+#### 2.2. Preprocess data
+To preprocess data use:
 ```bash
-python test.py --dataset Synapse --vit_name R50-ViT-B_16
+python3 preprocess_data.py
+```
+
+### 3. Train and Test
+
+#### 2.1. Preprocess data
+**Default model name:** R50+ViT-B_16
+
+To train NN use:
+```bash
+CUDA_VISIBLE_DEVICES=0 python train.py --dataset Synapse --vit_name {MODEL_NAME_FROM_LIST}
+```
+
+#### 2.2. Preprocess data
+**Default model name:** R50+ViT-B_16
+
+To evaluate NN use:
+```bash
+python test.py --dataset Synapse --vit_name {MODEL_NAME_FROM_LIST}
+```
+## Modifications
+
+### 1. Prepare environment for work (If u decide work w/o docker)
+```bash
+cd Docker
 ```
 
 ## Reference
+* [TransUNet](https://github.com/google-research/vision_transformer)
 * [Google ViT](https://github.com/google-research/vision_transformer)
 * [ViT-pytorch](https://github.com/jeonsworld/ViT-pytorch)
 * [segmentation_models.pytorch](https://github.com/qubvel/segmentation_models.pytorch)
