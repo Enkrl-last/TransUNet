@@ -9,9 +9,14 @@ git@github.com:Enkrl-last/TransUNet.git
 ```bash
 Somehow download docker image
 ```
-#### If u want to build docker by yourself or make changes go to
+#### If u want to build docker by yourself or make changes go to docker
 ```bash
 cd Docker
+docker build -t transunet .
+```
+#### For run docker container do next comman
+```bash
+docker container run -it --rm --gpus all transunet
 ```
 
 ## Usage of test data
