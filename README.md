@@ -51,7 +51,7 @@ pip install -r requirements.txt
 
 **Note:** Dataset weight is 15 GB!
 
-To reproduce the results, you can use the dataset from the Synapsis website. 
+To reproduce the results, you can use the dataset from the [official Synapse website](https://www.synapse.org/#!Synapse:syn3193805/wiki/). 
 To do this, you need to register on it and take part in the project.
 After that, you need to run a sequence of scripts that download data from the site and perform preprocessing.
 
