@@ -5,10 +5,15 @@ This repo holds code for [TransUNet: Transformers Make Strong Encoders for Medic
 ```bash
 git clone git@github.com:Enkrl-last/TransUNet.git
 ```
+
+**Note:** If you have not [NVDIA drivers](https://www.nvidia.com/download/index.aspx?lang=en-us).  are not installed on your computer, 
+you will need to install them or use docker based on KUDA
+
+
 #### If u want to use already existed docker image u can download it by:
 ```bash
 docker pull 1223ssaw/transunet:2.0
-sudo docker run -it --rm --gpus all transunet
+docker container run -it --rm --gpus all 1223ssaw/transunet:2.0
 ```
 #### If u want to build docker by yourself or make changes go to
 ```bash
